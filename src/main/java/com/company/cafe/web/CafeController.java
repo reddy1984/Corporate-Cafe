@@ -67,9 +67,11 @@ public class CafeController {
 
 	@GetMapping("/analytics")
 	public String analytics(Model model) {
+		List<Map.Entry<String,Integer>> sortedSales = new ArrayList<>(analytics.getSales().entrySet());
+		sortedSales.sort(Map.Entry.<String,Integer>comparingByValue(Comparator.reverseOrder()));
 		model.addAttribute("orders", analytics.getOrders());
 		model.addAttribute("revenue", analytics.getRevenue());
-		model.addAttribute("sales", analytics.getSales());
+		model.addAttribute("sales", sortedSales);
 		model.addAttribute("lowStock", inventory.lowStock());
 		return "analytics";
 	}

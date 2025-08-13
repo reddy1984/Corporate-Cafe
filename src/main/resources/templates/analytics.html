@@ -14,7 +14,7 @@
 	<table>
 		<thead><tr><th>Item</th><th>Qty</th></tr></thead>
 		<tbody>
-		<tr th:each="e : ${#lists.sort(sales.entrySet(), (a,b) -> b.value.compareTo(a.value))}">
+		<tr th:each="e : ${sales}">
 			<td th:text="${e.key}"></td>
 			<td th:text="${e.value}"></td>
 		</tr>
